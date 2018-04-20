@@ -286,32 +286,7 @@ class _OrderPageState extends State<OrderPage> {
               quantity: currentOrder.quantity,
               quantityChanged: (int value) { updateOrder(quantity: value); },
             ),
-          ),
-          new SliverSafeArea(
-            top: false,
-            minimum: const EdgeInsets.fromLTRB(8.0, 32.0, 8.0, 8.0),
-            sliver: new SliverGrid(
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 248.0,
-                mainAxisSpacing: 8.0,
-                crossAxisSpacing: 8.0,
-              ),
-              delegate: new SliverChildListDelegate(
-                widget.products
-                  .where((Product product) => product != widget.order.product)
-                  .map((Product product) {
-                    return new Card(
-                      elevation: 1.0,
-                      child: new Image.asset(
-                        product.imageAsset,
-                        package: product.imageAssetPackage,
-                        fit: BoxFit.contain,
-                      ),
-                    );
-                  }).toList(),
-              ),
-            ),
-          ),
+          )
         ],
       ),
     );
