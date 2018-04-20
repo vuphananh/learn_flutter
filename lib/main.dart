@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
 
-import 'package:learn_flutter_app/demo/shrine/shrine_home.dart';
+import 'package:learn_flutter_app/gallery/app.dart';
+import 'package:learn_flutter_app/demo/shrine_demo.dart';
 
 void main() => runApp(
     new MaterialApp(title: 'Navigation Basics',
       home: new MyApp(),
-//      routes: <String, WidgetBuilder>{
-//        '/AnimHero': (BuildContext context) => new ShrineHome(),
-//      }
+      routes: <String, WidgetBuilder>{
+        '/AnimHero': (BuildContext context) =>  new ShrineDemo(),
+      }
     )
 );
-//void main() {
-//  // Overriding https://github.com/flutter/flutter/issues/13736 for better
-//  // visual effect at the cost of performance.
-//  MaterialPageRoute.debugEnableFadingRoutes = true; // ignore: deprecated_member_use
-//  runApp(new MyApp());
-//}
 
 class MyApp extends StatefulWidget {
   @override
@@ -38,41 +33,41 @@ class ListTestState extends State<MyApp> {
 
     return new MaterialApp(
       title: title,
-      home: new ShrineHome()
-//      new Scaffold(
-//        key: _scaffoldKey,
-//        appBar: new AppBar(
-//          title: new Text(title),
-//        ),
-//        body: new ListView(
-//          children: <Widget>[
-//            new ListTile(
-//              title: new Text('Hero Animations'),
-//              onTap: () {
-//                onAnim(0);
-//              },
-//            ),
-//            new ListTile(
-//              title: new Text('Album'),
-//              onTap: () {
-//                onAnim(1);
-//              },
-//            ),
-//            new ListTile(
-//              title: new Text('Phone'),
-//              onTap: () {
-//                onAnim(2);
-//              },
-//            ),
-//            new ListTile(
-//              title: new Text('Phone'),
-//              onTap: () {
-//                onAnim(3);
-//              },
-//            ),
-//          ],
-//        ),
-//      ),
+      home:
+      new Scaffold(
+        key: _scaffoldKey,
+        appBar: new AppBar(
+          title: new Text(title),
+        ),
+        body: new ListView(
+          children: <Widget>[
+            new ListTile(
+              title: new Text('Hero Animations'),
+              onTap: () {
+                onAnim(0);
+              },
+            ),
+            new ListTile(
+              title: new Text('Album'),
+              onTap: () {
+                onAnim(1);
+              },
+            ),
+            new ListTile(
+              title: new Text('Phone'),
+              onTap: () {
+                onAnim(2);
+              },
+            ),
+            new ListTile(
+              title: new Text('Phone'),
+              onTap: () {
+                onAnim(3);
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 
