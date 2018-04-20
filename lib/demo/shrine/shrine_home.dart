@@ -94,7 +94,7 @@ class _ShrineGridLayout extends SliverGridLayout {
 }
 
 class _ShrineGridDelegate extends SliverGridDelegate {
-  static const double _kSpacing = 8.0;
+  static const double _kSpacing = 1.0;
 
   @override
   SliverGridLayout getLayout(SliverConstraints constraints) {
@@ -272,7 +272,7 @@ class _ShrineHomeState extends State<ShrineHome> {
         slivers: <Widget>[
           new SliverSafeArea(
             top: false,
-            minimum: const EdgeInsets.all(16.0),
+//            minimum: const EdgeInsets.all(16.0),
             sliver: new SliverGrid(
               gridDelegate: gridDelegate,
               delegate: new SliverChildListDelegate(

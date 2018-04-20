@@ -4,12 +4,9 @@
 
 import 'shrine_types.dart';
 
-//const String _kGalleryAssetsPackage = 'assets';
-
 const Vendor _ali = const Vendor(
   name: 'Ali’s shop',
   avatarAsset: 'assets/shrine/vendors/ali-connors.png',
-//  avatarAssetPackage: _kGalleryAssetsPackage,
   description:
     'Ali Connor’s makes custom goods for folks of all shapes and sizes '
     'made by hand and sometimes by machine, but always with love and care. '
@@ -19,7 +16,6 @@ const Vendor _ali = const Vendor(
 const Vendor _sandra = const Vendor(
   name: 'Sandra’s shop',
   avatarAsset: 'assets/shrine/vendors/sandra-adams.jpg',
-//  avatarAssetPackage: _kGalleryAssetsPackage,
   description:
     'Sandra specializes in furniture, beauty and travel products with a classic vibe. '
     'Custom orders are available if you’re looking for a certain color or material.'
@@ -28,7 +24,6 @@ const Vendor _sandra = const Vendor(
 const Vendor _trevor = const Vendor(
   name: 'Trevor’s shop',
   avatarAsset: 'assets/shrine/vendors/zach.jpg',
-//  avatarAssetPackage: _kGalleryAssetsPackage,
   description:
     'Trevor makes great stuff for awesome people like you. Super cool and extra '
     'awesome all of his shop’s goods are handmade with love. Custom orders are '
@@ -38,7 +33,6 @@ const Vendor _trevor = const Vendor(
 const Vendor _peter = const Vendor(
   name: 'Peter’s shop',
   avatarAsset: 'assets/shrine/vendors/peter-carlsson.png',
-//  avatarAssetPackage: _kGalleryAssetsPackage,
   description:
     'Peter makes great stuff for awesome people like you. Super cool and extra '
     'awesome all of his shop’s goods are handmade with love. Custom orders are '
@@ -48,7 +42,6 @@ const Vendor _peter = const Vendor(
 const Vendor _stella = const Vendor(
   name: 'Stella’s shop',
   avatarAsset: 'assets/shrine/vendors/16c477b.jpg',
-//  avatarAssetPackage: _kGalleryAssetsPackage,
   description:
     'Stella sells awesome stuff at lovely prices. made by hand and sometimes by '
     'machine, but always with love and care. Custom orders are available upon request '
@@ -59,7 +52,6 @@ const List<Product> _allProducts = const <Product> [
   const Product(
     name: 'Vintage Bluetooth Radio',
     imageAsset: 'assets/shrine/products/radio.png',
-//    imageAssetPackage: _kGalleryAssetsPackage,
     categories: const <String>['furniture', 'latest'],
     price: 300.00,
     vendor: _sandra,
@@ -71,7 +63,6 @@ const List<Product> _allProducts = const <Product> [
   const Product(
     name: 'Sunglasses',
     imageAsset: 'assets/shrine/products/sunnies.png',
-//    imageAssetPackage: _kGalleryAssetsPackage,
     categories: const <String>['travel', 'fashion', 'beauty'],
     price: 20.00,
     vendor: _trevor,
@@ -84,7 +75,6 @@ const List<Product> _allProducts = const <Product> [
   const Product(
     name: 'Clock',
     imageAsset: 'assets/shrine/products/clock.png',
-//    imageAssetPackage: _kGalleryAssetsPackage,
     categories: const <String>['furniture'],
     price: 30.00,
     vendor: _trevor,
@@ -96,7 +86,6 @@ const List<Product> _allProducts = const <Product> [
   const Product(
     name: 'Red popsicle',
     imageAsset: 'assets/shrine/products/popsicle.png',
-//    imageAssetPackage: _kGalleryAssetsPackage,
     categories: const <String>['food', 'fashion'],
     price: 300.00,
     vendor: _stella,
@@ -108,7 +97,6 @@ const List<Product> _allProducts = const <Product> [
   const Product(
     name: 'Folding Chair',
     imageAsset: 'assets/shrine/products/lawn_chair.png',
-//    imageAssetPackage: _kGalleryAssetsPackage,
     categories: const <String>['furniture'],
     price: 63.00,
     vendor: _stella,
@@ -118,7 +106,6 @@ const List<Product> _allProducts = const <Product> [
   const Product(
     name: 'Green comfort chair',
     imageAsset: 'assets/shrine/products/chair.png',
-//    imageAssetPackage: _kGalleryAssetsPackage,
     categories: const <String>['furniture'],
     price: 36.00,
     vendor: _ali,
@@ -128,7 +115,6 @@ const List<Product> _allProducts = const <Product> [
   const Product(
     name: 'Better wearing heels',
     imageAsset: 'assets/shrine/products/heels.png',
-//    imageAssetPackage: _kGalleryAssetsPackage,
     categories: const <String>['fashion'],
     price: 125.00,
     vendor: _peter,
@@ -138,7 +124,6 @@ const List<Product> _allProducts = const <Product> [
   const Product(
     name: 'Green Slip-ons',
     imageAsset: 'assets/shrine/products/green-shoes.png',
-//    imageAssetPackage: _kGalleryAssetsPackage,
     categories: const <String>['travel', 'fashion'],
     price: 75.00,
     vendor: _sandra,
@@ -150,7 +135,6 @@ const List<Product> _allProducts = const <Product> [
   const Product(
     name: 'Teapot',
     imageAsset: 'assets/shrine/products/teapot.png',
-//    imageAssetPackage: _kGalleryAssetsPackage,
     categories: const <String>['furniture', 'fashion'],
     price: 70.00,
     vendor: _trevor,
@@ -165,7 +149,6 @@ const List<Product> _allProducts = const <Product> [
   const Product(
     name: 'Blue suede shoes',
     imageAsset: 'assets/shrine/products/chucks.png',
-//    imageAssetPackage: _kGalleryAssetsPackage,
     categories: const <String>['travel', 'fashion'],
     price: 89.00,
     vendor: _trevor,
@@ -176,7 +159,6 @@ const List<Product> _allProducts = const <Product> [
   const Product(
     name: 'Dipped Brush',
     imageAsset: 'assets/shrine/products/brush.png',
-//    imageAssetPackage: _kGalleryAssetsPackage,
     categories: const <String>['fashion', 'beauty'],
     price: 25.00,
     vendor: _stella,
@@ -188,7 +170,6 @@ const List<Product> _allProducts = const <Product> [
   const Product(
     name: 'Perfect Goldfish Bowl',
     imageAsset: 'assets/shrine/products/fish_bowl.png',
-//    imageAssetPackage: _kGalleryAssetsPackage,
     categories: const <String>['latest', 'furniture'],
     price: 30.00,
     vendor: _ali,
@@ -200,7 +181,6 @@ const List<Product> _allProducts = const <Product> [
   const Product(
     name: 'Red Lipstick Set',
     imageAsset: 'assets/shrine/products/lipstick.png',
-//    imageAssetPackage: _kGalleryAssetsPackage,
     categories: const <String>['fashion', 'beauty'],
     price: 54.00,
     vendor: _sandra,
@@ -212,7 +192,6 @@ const List<Product> _allProducts = const <Product> [
   const Product(
     name: 'Backpack',
     imageAsset: 'assets/shrine/products/backpack.png',
-//    imageAssetPackage: _kGalleryAssetsPackage,
     categories: const <String>['travel', 'fashion'],
     price: 25.00,
     vendor: _peter,
@@ -224,7 +203,6 @@ const List<Product> _allProducts = const <Product> [
   const Product(
     name: 'Half Shield Helmet',
     imageAsset: 'assets/shrine/products/helmet.png',
-//    imageAssetPackage: _kGalleryAssetsPackage,
     categories: const <String>['travel', 'fashion', 'latest'],
     price: 25.00,
     vendor: _ali,
@@ -236,7 +214,6 @@ const List<Product> _allProducts = const <Product> [
   const Product(
     name: 'Beachball',
     imageAsset: 'assets/shrine/products/beachball.png',
-//    imageAssetPackage: _kGalleryAssetsPackage,
     categories: const <String>['latest'],
     price: 17.00,
     vendor: _peter,
@@ -248,7 +225,6 @@ const List<Product> _allProducts = const <Product> [
   const Product(
     name: 'Old Binoculars',
     imageAsset: 'assets/shrine/products/binoculars.png',
-//    imageAssetPackage: _kGalleryAssetsPackage,
     categories: const <String>['travel', 'fashion', 'latest'],
     price: 25.00,
     vendor: _stella,
@@ -261,7 +237,6 @@ const List<Product> _allProducts = const <Product> [
   const Product(
     name: 'Lime Flippers',
     imageAsset: 'assets/shrine/products/flippers.png',
-//    imageAssetPackage: _kGalleryAssetsPackage,
     categories: const <String>['travel', 'fashion', 'beauty'],
     price: 25.00,
     vendor: _peter,
@@ -273,7 +248,6 @@ const List<Product> _allProducts = const <Product> [
   const Product(
     name: 'Surfboard',
     imageAsset: 'assets/shrine/products/surfboard.png',
-//    imageAssetPackage: _kGalleryAssetsPackage,
     categories: const <String>[ 'travel', 'latest'],
     price: 120.00,
     vendor: _stella,
