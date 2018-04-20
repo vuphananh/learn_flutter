@@ -182,123 +182,6 @@ class _ProductPriceItem extends _PriceItem {
   }
 }
 
-class _FeaturePriceItem extends _PriceItem {
-  const _FeaturePriceItem({ Key key, Product product }) : super(key: key, product: product);
-
-  @override
-  Widget build(BuildContext context) {
-    return buildItem(
-      context,
-      ShrineTheme.of(context).featurePriceStyle,
-      const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-    );
-  }
-}
-
-class _HeadingLayout extends MultiChildLayoutDelegate {
-  _HeadingLayout();
-
-  static const String price = 'price';
-  static const String image = 'image';
-  static const String title = 'title';
-  static const String description = 'description';
-  static const String vendor = 'vendor';
-
-  @override
-  void performLayout(Size size) {
-    final Size priceSize = layoutChild(price, new BoxConstraints.loose(size));
-    positionChild(price, new Offset(size.width - priceSize.width, 0.0));
-
-    final double halfWidth = size.width / 2.0;
-    final double halfHeight = size.height / 2.0;
-    const double halfUnit = unitSize / 2.0;
-    const double margin = 16.0;
-
-    final Size imageSize = layoutChild(image, new BoxConstraints.loose(size));
-    final double imageX = imageSize.width < halfWidth - halfUnit
-      ? halfWidth / 2.0 - imageSize.width / 2.0 - halfUnit
-      : halfWidth - imageSize.width;
-    positionChild(image, new Offset(imageX, halfHeight - imageSize.height / 2.0));
-
-    final double maxTitleWidth = halfWidth + unitSize - margin;
-    final BoxConstraints titleBoxConstraints = new BoxConstraints(maxWidth: maxTitleWidth);
-    final Size titleSize = layoutChild(title, titleBoxConstraints);
-    final double titleX = halfWidth - unitSize;
-    final double titleY = halfHeight - titleSize.height;
-    positionChild(title, new Offset(titleX, titleY));
-
-    final Size descriptionSize = layoutChild(description, titleBoxConstraints);
-    final double descriptionY = titleY + titleSize.height + margin;
-    positionChild(description, new Offset(titleX, descriptionY));
-
-    layoutChild(vendor, titleBoxConstraints);
-    final double vendorY = descriptionY + descriptionSize.height + margin;
-    positionChild(vendor, new Offset(titleX, vendorY));
-  }
-
-  @override
-  bool shouldRelayout(_HeadingLayout oldDelegate) => false;
-}
-
-// A card that highlights the "featured" catalog item.
-class _Heading extends StatelessWidget {
-  _Heading({ Key key, @required this.product })
-    : assert(product != null),
-      assert(product.featureTitle != null),
-      assert(product.featureDescription != null),
-      super(key: key);
-
-  final Product product;
-
-  @override
-  Widget build(BuildContext context) {
-    final Size screenSize = MediaQuery.of(context).size;
-    final ShrineTheme theme = ShrineTheme.of(context);
-    return new MergeSemantics(
-      child: new SizedBox(
-        height: screenSize.width > screenSize.height
-          ? (screenSize.height - kToolbarHeight) * 0.85
-          : (screenSize.height - kToolbarHeight) * 0.70,
-        child: new Container(
-          decoration: new BoxDecoration(
-            color: theme.cardBackgroundColor,
-            border: new Border(bottom: new BorderSide(color: theme.dividerColor)),
-          ),
-          child: new CustomMultiChildLayout(
-            delegate: new _HeadingLayout(),
-            children: <Widget>[
-              new LayoutId(
-                id: _HeadingLayout.price,
-                child: new _FeaturePriceItem(product: product),
-              ),
-              new LayoutId(
-                id: _HeadingLayout.image,
-                child: new Image.asset(
-                  product.imageAsset,
-                  package: product.imageAssetPackage,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              new LayoutId(
-                id: _HeadingLayout.title,
-                child: new Text(product.featureTitle, style: theme.featureTitleStyle),
-              ),
-              new LayoutId(
-                id: _HeadingLayout.description,
-                child: new Text(product.featureDescription, style: theme.featureStyle),
-              ),
-              new LayoutId(
-                id: _HeadingLayout.vendor,
-                child: new _VendorItem(vendor: product.vendor),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 // A card that displays a product's image, price, and vendor. The _ProductItem
 // cards appear in a grid below the heading.
 class _ProductItem extends StatelessWidget {
@@ -381,14 +264,12 @@ class _ShrineHomeState extends State<ShrineHome> {
 
   @override
   Widget build(BuildContext context) {
-    final Product featured = _products.firstWhere((Product product) => product.featureDescription != null);
     return new ShrinePage(
       scaffoldKey: _scaffoldKey,
       products: _products,
       shoppingCart: _shoppingCart,
       body: new CustomScrollView(
         slivers: <Widget>[
-          new SliverToBoxAdapter(child: new _Heading(product: featured)),
           new SliverSafeArea(
             top: false,
             minimum: const EdgeInsets.all(16.0),

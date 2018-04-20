@@ -50,97 +50,10 @@ class ShrinePageState extends State<ShrinePage> {
     return false;
   }
 
-  void _showShoppingCart() {
-    showModalBottomSheet<void>(context: context, builder: (BuildContext context) {
-      if (widget.shoppingCart.isEmpty) {
-        return const Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: const Text('The shopping cart is empty')
-        );
-      }
-      return new ListView(
-        padding: kMaterialListPadding,
-        children: widget.shoppingCart.values.map((Order order) {
-          return new ListTile(
-            title: new Text(order.product.name),
-            leading: new Text('${order.quantity}'),
-            subtitle: new Text(order.product.vendor.name)
-          );
-        }).toList(),
-      );
-    });
-  }
-
-  void _sortByPrice() {
-    widget.products.sort((Product a, Product b) => a.price.compareTo(b.price));
-  }
-
-  void _sortByProduct() {
-    widget.products.sort((Product a, Product b) => a.name.compareTo(b.name));
-  }
-
-  void _emptyCart() {
-    widget.shoppingCart.clear();
-    widget.scaffoldKey.currentState.showSnackBar(const SnackBar(content: const Text('Shopping cart is empty')));
-  }
-
   @override
   Widget build(BuildContext context) {
-    final ShrineTheme theme = ShrineTheme.of(context);
     return new Scaffold(
       key: widget.scaffoldKey,
-      appBar: new AppBar(
-        elevation: _appBarElevation,
-        backgroundColor: theme.appBarBackgroundColor,
-        iconTheme: Theme.of(context).iconTheme,
-        brightness: Brightness.light,
-        flexibleSpace: new Container(
-          decoration: new BoxDecoration(
-            border: new Border(
-              bottom: new BorderSide(color: theme.dividerColor)
-            )
-          )
-        ),
-        title: new Text('SHRINE', style: ShrineTheme.of(context).appBarTitleStyle),
-        centerTitle: true,
-        actions: <Widget>[
-          new IconButton(
-            icon: const Icon(Icons.shopping_cart),
-            tooltip: 'Shopping cart',
-            onPressed: _showShoppingCart
-          ),
-          new PopupMenuButton<ShrineAction>(
-            itemBuilder: (BuildContext context) => <PopupMenuItem<ShrineAction>>[
-              const PopupMenuItem<ShrineAction>(
-                value: ShrineAction.sortByPrice,
-                child: const Text('Sort by price')
-              ),
-              const PopupMenuItem<ShrineAction>(
-                value: ShrineAction.sortByProduct,
-                child: const Text('Sort by product')
-              ),
-              const PopupMenuItem<ShrineAction>(
-                value: ShrineAction.emptyCart,
-                child: const Text('Empty shopping cart')
-              )
-            ],
-            onSelected: (ShrineAction action) {
-              switch (action) {
-                case ShrineAction.sortByPrice:
-                  setState(_sortByPrice);
-                  break;
-                case ShrineAction.sortByProduct:
-                  setState(_sortByProduct);
-                  break;
-                case ShrineAction.emptyCart:
-                  setState(_emptyCart);
-                  break;
-              }
-            }
-          )
-        ]
-      ),
-      floatingActionButton: widget.floatingActionButton,
       body: new NotificationListener<ScrollNotification>(
         onNotification: _handleScrollNotification,
         child: widget.body

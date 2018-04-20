@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:learn_flutter_app/gallery/app.dart';
 import 'package:learn_flutter_app/demo/shrine_demo.dart';
 
 void main() => runApp(
