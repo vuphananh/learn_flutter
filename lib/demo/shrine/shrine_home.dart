@@ -19,30 +19,14 @@ const double unitSize = kToolbarHeight;
 final List<Product> _products = new List<Product>.from(allProducts());
 final Map<Product, Order> _shoppingCart = <Product, Order>{};
 
-const int _childrenPerBlock = 8;
-const int _rowsPerBlock = 5;
-
-int _minIndexInRow(int rowIndex) {
-  final int blockIndex = rowIndex ~/ _rowsPerBlock;
-  return const <int>[0, 2, 4, 6, 7][rowIndex % _rowsPerBlock] + blockIndex * _childrenPerBlock;
-}
-
-int _maxIndexInRow(int rowIndex) {
-  final int blockIndex = rowIndex ~/ _rowsPerBlock;
-  return const <int>[1, 3, 5, 6, 7][rowIndex % _rowsPerBlock] + blockIndex * _childrenPerBlock;
-}
-
 int _rowAtIndex(int index) {
-  final int blockCount = index ~/ _childrenPerBlock;
-  return const <int>[0, 0, 1, 1, 2, 2, 3, 4][index - blockCount * _childrenPerBlock] + blockCount * _rowsPerBlock;
+  // This is for getting Row by index
+  return (index~/2);
 }
 
 int _columnAtIndex(int index) {
-  return const <int>[0, 1, 0, 1, 0, 1, 0, 0][index % _childrenPerBlock];
-}
-
-int _columnSpanAtIndex(int index) {
-  return const <int>[1, 1, 1, 1, 1, 1, 2, 2][index % _childrenPerBlock];
+  // This is for getting Column by index
+  return index%2==1?1:0;
 }
 
 // The Shrine home page arranges the product cards into two columns. The card
@@ -62,24 +46,23 @@ class _ShrineGridLayout extends SliverGridLayout {
 
   @override
   int getMinChildIndexForScrollOffset(double scrollOffset) {
-    return _minIndexInRow(scrollOffset ~/ rowStride);
+    return 0;
   }
 
   @override
   int getMaxChildIndexForScrollOffset(double scrollOffset) {
-    return _maxIndexInRow(scrollOffset ~/ rowStride);
+    return _products.length;
   }
 
   @override
   SliverGridGeometry getGeometryForChildIndex(int index) {
     final int row = _rowAtIndex(index);
     final int column = _columnAtIndex(index);
-    final int columnSpan = _columnSpanAtIndex(index);
     return new SliverGridGeometry(
       scrollOffset: row * rowStride,
       crossAxisOffset: column * columnStride,
       mainAxisExtent: tileHeight,
-      crossAxisExtent: tileWidth + (columnSpan - 1) * columnStride,
+      crossAxisExtent: tileWidth,
     );
   }
 
