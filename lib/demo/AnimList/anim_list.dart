@@ -30,6 +30,12 @@ class AnimList extends StatelessWidget {
             onTap: () {
               onAnim(2);
             },
+          ),
+          new ListTile(
+            title: new Text('Rotation Animation'),
+            onTap: () {
+              onAnim(3);
+            },
           )
         ],
       ),
@@ -46,6 +52,9 @@ class AnimList extends StatelessWidget {
         break;
       case 2:
         Navigator.of(mContext).pushNamed('/AnimFadeOut');
+        break;
+      case 3:
+        Navigator.of(mContext).pushNamed('/AnimRotation');
         break;
     }
   }

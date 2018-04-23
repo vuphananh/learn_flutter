@@ -5,6 +5,7 @@ import 'package:learn_flutter_app/demo/AnimViewProducts/shrine/shrine_demo.dart'
 import 'package:learn_flutter_app/demo/AnimList/AnimFadeIn/fade_in.dart';
 import 'package:learn_flutter_app/demo/AnimList/AnimFadeOut/fade_out.dart';
 import 'package:learn_flutter_app/demo/AnimList/AnimStaggered/staggered.dart';
+import 'package:learn_flutter_app/demo/AnimList/AnimRotation/rotation.dart';
 import 'package:learn_flutter_app/demo/AnimList/anim_list.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 
@@ -17,6 +18,7 @@ void main() => runApp(
         '/AnimStaggered': (BuildContext context) =>  new Staggered(),
         '/AnimFadeIn': (BuildContext context) =>  new FadeIn(),
         '/AnimFadeOut': (BuildContext context) =>  new FadeOut(),
+        '/AnimRotation': (BuildContext context) =>  new Rotation(),
       }
     )
 );
