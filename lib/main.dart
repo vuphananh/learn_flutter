@@ -2,23 +2,50 @@
 import 'package:flutter/material.dart';
 
 import 'package:learn_flutter_app/demo/AnimViewProducts/shrine/shrine_demo.dart';
+import 'package:learn_flutter_app/demo/AnimList/anim_list.dart';
 import 'package:learn_flutter_app/demo/AnimList/AnimFadeIn/fade_in.dart';
 import 'package:learn_flutter_app/demo/AnimList/AnimFadeOut/fade_out.dart';
 import 'package:learn_flutter_app/demo/AnimList/AnimStaggered/staggered.dart';
 import 'package:learn_flutter_app/demo/AnimList/AnimRotation/rotation.dart';
-import 'package:learn_flutter_app/demo/AnimList/anim_list.dart';
+import 'package:learn_flutter_app/demo/AnimList/AnimZoomIn/zoom_in.dart';
+import 'package:learn_flutter_app/demo/AnimList/AnimZoomOut/zoom_out.dart';
+import 'package:learn_flutter_app/demo/AnimTransition/AnimFadeIn/fade_in.dart';
+
 import 'package:flutter/scheduler.dart' show timeDilation;
+
+class MyCustomRoute<T> extends MaterialPageRoute<T> {
+  MyCustomRoute({ WidgetBuilder builder, RouteSettings settings })
+      : super(builder: builder, settings: settings);
+
+  @override
+  Widget buildTransitions(BuildContext context,
+      Animation<double> animation,
+      Animation<double> secondaryAnimation,
+      Widget child) {
+    if (settings.isInitialRoute)
+      return child;
+    // Fades between routes. (If you don't want any animation,
+    // just return child.)
+    return new FadeTransition(opacity: animation, child: child);
+  }
+}
 
 void main() => runApp(
     new MaterialApp(title: 'Navigation Basics',
-      home: new MyApp(),
+        home: new MyApp(),
       routes: <String, WidgetBuilder>{
-        '/AnimViewProducts': (BuildContext context) =>  new ShrineDemo(),
+        '/AnimViewProducts': (BuildContext context) => new ShrineDemo(),
+
         '/AnimList': (BuildContext context) =>  new AnimList(),
+
         '/AnimStaggered': (BuildContext context) =>  new Staggered(),
         '/AnimFadeIn': (BuildContext context) =>  new FadeIn(),
         '/AnimFadeOut': (BuildContext context) =>  new FadeOut(),
         '/AnimRotation': (BuildContext context) =>  new Rotation(),
+        '/AnimZoomIn': (BuildContext context) =>  new ZoomIn(),
+        '/AnimZoomOut': (BuildContext context) =>  new ZoomOut(),
+
+        '/AnimTransition': (BuildContext context) => new TransitionFadeIn(),
       }
     )
 );
@@ -64,12 +91,12 @@ class ListTestState extends State<MyApp> {
                 onTap(2);
               },
             ),
-//            new ListTile(
-//              title: new Text('Phone'),
-//              onTap: () {
-//                onAnim(3);
-//              },
-//            ),
+            new ListTile(
+              title: new Text('Open animations with transition'),
+              onTap: () {
+                onTap(3);
+              },
+            ),
           ],
         ),
       ),
@@ -109,11 +136,12 @@ class ListTestState extends State<MyApp> {
         ));
         Navigator.of(mContext).pushNamed('/AnimList');
         break;
-//      case 3:
-//        _scaffoldKey.currentState.showSnackBar(new SnackBar(
-//            content: new Text("Open snackbar 3")
-//        ));
-//        break;
+      case 3:
+        _scaffoldKey.currentState.showSnackBar(new SnackBar(
+            content: new Text("Open Animations transition")
+        ));
+        Navigator.of(mContext).pushNamed('/AnimTransition');
+        break;
     }
   }
 }

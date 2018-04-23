@@ -36,6 +36,18 @@ class AnimList extends StatelessWidget {
             onTap: () {
               onAnim(3);
             },
+          ),
+          new ListTile(
+            title: new Text('ZoomIn Animation'),
+            onTap: () {
+              onAnim(4);
+            },
+          ),
+          new ListTile(
+            title: new Text('ZoomOut Animation'),
+            onTap: () {
+              onAnim(5);
+            },
           )
         ],
       ),
@@ -55,6 +67,12 @@ class AnimList extends StatelessWidget {
         break;
       case 3:
         Navigator.of(mContext).pushNamed('/AnimRotation');
+        break;
+      case 4:
+        Navigator.of(mContext).pushNamed('/AnimZoomIn');
+        break;
+      case 5:
+        Navigator.of(mContext).pushNamed('/AnimZoomOut');
         break;
     }
   }
