@@ -4,8 +4,8 @@
 
 import 'package:flutter/material.dart';
 
-import 'shrine/shrine_home.dart' show ShrineHome;
-import 'shrine/shrine_theme.dart' show ShrineTheme;
+import 'package:learn_flutter_app/demo/AnimViewProducts/shrine/shrine_home.dart' show ShrineHome;
+import 'package:learn_flutter_app/demo/AnimViewProducts/shrine/shrine_theme.dart' show ShrineTheme;
 
 // This code would ordinarily be part of the MaterialApp's home. It's being
 // used by the ShrineDemo and by each route pushed from there because this
@@ -35,8 +35,6 @@ class ShrinePageRoute<T> extends MaterialPageRoute<T> {
 }
 
 class ShrineDemo extends StatelessWidget {
-  static const String routeName = '/shrine'; // Used by the Gallery app.
-
   @override
   Widget build(BuildContext context) => buildShrine(context, new ShrineHome());
 }

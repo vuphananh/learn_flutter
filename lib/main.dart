@@ -1,14 +1,22 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:learn_flutter_app/demo/shrine_demo.dart';
+import 'package:learn_flutter_app/demo/AnimViewProducts/shrine/shrine_demo.dart';
+import 'package:learn_flutter_app/demo/AnimList/AnimFadeIn/fade_in.dart';
+import 'package:learn_flutter_app/demo/AnimList/AnimFadeOut/fade_out.dart';
+import 'package:learn_flutter_app/demo/AnimList/AnimStaggered/staggered.dart';
+import 'package:learn_flutter_app/demo/AnimList/anim_list.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 
 void main() => runApp(
     new MaterialApp(title: 'Navigation Basics',
       home: new MyApp(),
       routes: <String, WidgetBuilder>{
-        '/AnimHero': (BuildContext context) =>  new ShrineDemo(),
+        '/AnimViewProducts': (BuildContext context) =>  new ShrineDemo(),
+        '/AnimList': (BuildContext context) =>  new AnimList(),
+        '/AnimStaggered': (BuildContext context) =>  new Staggered(),
+        '/AnimFadeIn': (BuildContext context) =>  new FadeIn(),
+        '/AnimFadeOut': (BuildContext context) =>  new FadeOut(),
       }
     )
 );
@@ -39,27 +47,27 @@ class ListTestState extends State<MyApp> {
             new ListTile(
               title: new Text('Open list'),
               onTap: () {
-                onAnim(0);
+                onTap(0);
               },
             ),
             new ListTile(
               title: new Text('Open slow motion'),
               onTap: () {
-                onAnim(1);
+                onTap(1);
               },
             ),
             new ListTile(
-              title: new Text('Phone'),
+              title: new Text('Open animations'),
               onTap: () {
-                onAnim(2);
+                onTap(2);
               },
             ),
-            new ListTile(
-              title: new Text('Phone'),
-              onTap: () {
-                onAnim(3);
-              },
-            ),
+//            new ListTile(
+//              title: new Text('Phone'),
+//              onTap: () {
+//                onAnim(3);
+//              },
+//            ),
           ],
         ),
       ),
@@ -67,13 +75,13 @@ class ListTestState extends State<MyApp> {
   }
 
   bool isOpenSlowMotion = false;
-  onAnim(int i) {
+  onTap(int i) {
     switch (i) {
       case 0:
         _scaffoldKey.currentState.showSnackBar(new SnackBar(
-            content: new Text("Open Animation")
+            content: new Text("Open AnimViewProducts")
         ));
-        Navigator.of(mContext).pushNamed('/AnimHero');
+        Navigator.of(mContext).pushNamed('/AnimViewProducts');
         break;
       case 1:
         String text = "";
@@ -82,7 +90,7 @@ class ListTestState extends State<MyApp> {
           duration = 1.0;
           text = "Off slowmotion";
         } else {
-          duration = 10.0;
+          duration = 5.0;
           text = "Open slowmotion 10.0";
         }
         _scaffoldKey.currentState.showSnackBar(new SnackBar(
@@ -95,14 +103,15 @@ class ListTestState extends State<MyApp> {
         break;
       case 2:
         _scaffoldKey.currentState.showSnackBar(new SnackBar(
-            content: new Text("Open snackbar 2")
+            content: new Text("Open Anim List")
         ));
+        Navigator.of(mContext).pushNamed('/AnimList');
         break;
-      case 3:
-        _scaffoldKey.currentState.showSnackBar(new SnackBar(
-            content: new Text("Open snackbar 3")
-        ));
-        break;
+//      case 3:
+//        _scaffoldKey.currentState.showSnackBar(new SnackBar(
+//            content: new Text("Open snackbar 3")
+//        ));
+//        break;
     }
   }
 }

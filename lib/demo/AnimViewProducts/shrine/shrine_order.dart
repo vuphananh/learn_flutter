@@ -5,7 +5,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../shrine_demo.dart' show ShrinePageRoute;
+import 'package:learn_flutter_app/demo/AnimViewProducts/shrine/shrine_demo.dart'
+    show ShrinePageRoute;
 import 'shrine_page.dart';
 import 'shrine_theme.dart';
 import 'shrine_types.dart';
