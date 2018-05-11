@@ -9,13 +9,19 @@ import 'package:learn_flutter_app/demo/AnimList/AnimStaggered/staggered.dart';
 import 'package:learn_flutter_app/demo/AnimList/AnimRotation/rotation.dart';
 import 'package:learn_flutter_app/demo/AnimList/AnimZoomIn/zoom_in.dart';
 import 'package:learn_flutter_app/demo/AnimList/AnimZoomOut/zoom_out.dart';
-import 'package:learn_flutter_app/demo/AnimTransition/AnimFadeIn/fade_in.dart';
+import 'package:learn_flutter_app/demo/AnimList/AnimSlide/slide.dart';
+
+import 'package:learn_flutter_app/demo/AnimTransition/anim_transition_list.dart';
 
 import 'package:flutter/scheduler.dart' show timeDilation;
+
 
 class MyCustomRoute<T> extends MaterialPageRoute<T> {
   MyCustomRoute({ WidgetBuilder builder, RouteSettings settings })
       : super(builder: builder, settings: settings);
+
+  @override
+  Duration get transitionDuration => const Duration(milliseconds: 300);
 
   @override
   Widget buildTransitions(BuildContext context,
@@ -26,27 +32,56 @@ class MyCustomRoute<T> extends MaterialPageRoute<T> {
       return child;
     // Fades between routes. (If you don't want any animation,
     // just return child.)
-    return new FadeTransition(opacity: animation, child: child);
+    switch (settings.name) {
+      case '/AnimTransitionFadeIn':
+        return new FadeTransition(opacity: animation, child: child);
+      case '/AnimTransitionRotation':
+        return new RotationTransition(turns: animation, child: child);
+      case '/AnimTransitionSlide':
+        Animation<Offset> animPos = new Tween<Offset>(
+          begin: const Offset(1.0, 0.0),
+          end: Offset.zero,
+        ).animate(animation);
+        return new SlideTransition(position: animPos, child: child);
+    }
   }
 }
 
 void main() => runApp(
-    new MaterialApp(title: 'Navigation Basics',
+    new MaterialApp(
+        title: 'Navigation Basics',
         home: new MyApp(),
-      routes: <String, WidgetBuilder>{
-        '/AnimViewProducts': (BuildContext context) => new ShrineDemo(),
+        onGenerateRoute: (RouteSettings settings) {
+          switch (settings.name) {
+            case '/AnimTransitionFadeIn':return new MyCustomRoute(
+              builder: (_) => new FadeIn(),
+              settings: settings,
+            );
+            case '/AnimTransitionRotation': return new MyCustomRoute(
+              builder: (_) => new Rotation(),
+              settings: settings,
+            );
+            case '/AnimTransitionSlide': return new MyCustomRoute(
+              builder: (_) => new Slide(),
+              settings: settings,
+            );
+          }
+        },
+        routes: <String, WidgetBuilder>{
+          '/AnimViewProducts': (BuildContext context) => new ShrineDemo(),
 
-        '/AnimList': (BuildContext context) =>  new AnimList(),
+          '/AnimList': (BuildContext context) =>  new AnimList(),
 
-        '/AnimStaggered': (BuildContext context) =>  new Staggered(),
-        '/AnimFadeIn': (BuildContext context) =>  new FadeIn(),
-        '/AnimFadeOut': (BuildContext context) =>  new FadeOut(),
-        '/AnimRotation': (BuildContext context) =>  new Rotation(),
-        '/AnimZoomIn': (BuildContext context) =>  new ZoomIn(),
-        '/AnimZoomOut': (BuildContext context) =>  new ZoomOut(),
+          '/AnimStaggered': (BuildContext context) =>  new Staggered(),
+          '/AnimFadeIn': (BuildContext context) =>  new FadeIn(),
+          '/AnimFadeOut': (BuildContext context) =>  new FadeOut(),
+          '/AnimRotation': (BuildContext context) =>  new Rotation(),
+          '/AnimZoomIn': (BuildContext context) =>  new ZoomIn(),
+          '/AnimZoomOut': (BuildContext context) =>  new ZoomOut(),
+          '/AnimSlide': (BuildContext context) =>  new Slide(),
 
-        '/AnimTransition': (BuildContext context) => new TransitionFadeIn(),
-      }
+          '/AnimTransition': (BuildContext context) => new AnimTransitionList(),
+        }
     )
 );
 

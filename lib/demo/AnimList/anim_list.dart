@@ -48,6 +48,12 @@ class AnimList extends StatelessWidget {
             onTap: () {
               onAnim(5);
             },
+          ),
+          new ListTile(
+            title: new Text('Slide Animation'),
+            onTap: () {
+              onAnim(6);
+            },
           )
         ],
       ),
@@ -73,6 +79,9 @@ class AnimList extends StatelessWidget {
         break;
       case 5:
         Navigator.of(mContext).pushNamed('/AnimZoomOut');
+        break;
+      case 6:
+        Navigator.of(mContext).pushNamed('/AnimSlide');
         break;
     }
   }
