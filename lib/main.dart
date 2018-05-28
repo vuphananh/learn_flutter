@@ -11,6 +11,10 @@ import 'package:learn_flutter_app/demo/AnimList/AnimZoomIn/zoom_in.dart';
 import 'package:learn_flutter_app/demo/AnimList/AnimZoomOut/zoom_out.dart';
 import 'package:learn_flutter_app/demo/AnimList/AnimSlide/slide.dart';
 
+import 'package:learn_flutter_app/demo/AnimForNumber/AnimTypeOne/type_one.dart';
+import 'package:learn_flutter_app/demo/AnimForNumber/AnimTypeTwo/type_two.dart';
+import 'package:learn_flutter_app/demo/AnimForNumber/anim_list.dart';
+
 import 'package:learn_flutter_app/demo/AnimTransition/anim_transition_list.dart';
 
 import 'package:flutter/scheduler.dart' show timeDilation;
@@ -80,6 +84,10 @@ void main() => runApp(
           '/AnimZoomOut': (BuildContext context) =>  new ZoomOut(),
           '/AnimSlide': (BuildContext context) =>  new Slide(),
 
+          '/AnimNumberList': (BuildContext context) =>  new AnimNumberList(),
+          '/AnimNumberTypeOne': (BuildContext context) =>  new NumberAnimTypeOne(),
+          '/AnimNumberTypeTwo': (BuildContext context) =>  new NumberAnimTypeTwo(),
+
           '/AnimTransition': (BuildContext context) => new AnimTransitionList(),
         }
     )
@@ -132,6 +140,12 @@ class ListTestState extends State<MyApp> {
                 onTap(3);
               },
             ),
+            new ListTile(
+              title: new Text('Open animations for number'),
+              onTap: () {
+                onTap(4);
+              },
+            ),
           ],
         ),
       ),
@@ -176,6 +190,12 @@ class ListTestState extends State<MyApp> {
             content: new Text("Open Animations transition")
         ));
         Navigator.of(mContext).pushNamed('/AnimTransition');
+        break;
+      case 4:
+        _scaffoldKey.currentState.showSnackBar(new SnackBar(
+            content: new Text("Open Animations for number")
+        ));
+        Navigator.of(mContext).pushNamed('/AnimNumberList');
         break;
     }
   }
